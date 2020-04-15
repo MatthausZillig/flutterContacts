@@ -1,4 +1,8 @@
+import 'package:contacts/android/views/address.view.dart';
+import 'package:contacts/models/contact.model.dart';
 import 'package:flutter/material.dart';
+
+import 'editor-contact.view.dart';
 
 class DetailsView extends StatelessWidget {
   @override
@@ -90,7 +94,66 @@ class DetailsView extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            height: 20,
+          ),
+          ListTile(
+            title: Text(
+              "Endereço",
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+            ),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Rua do Gato, 999",
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
+                Text(
+                  "São paulo/SP",
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+            isThreeLine: true,
+            trailing: FlatButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddressView()));
+              },
+              child: Icon(
+                Icons.pin_drop,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditorContactView(
+                model: ContactModel(
+                  id: "1",
+                  name: "Matthaus Zillig",
+                  email: "mathaus.zillig@corebiz.ag",
+                  phone: "11 99999-9999",
+                ),
+              ),
+            ),
+          );
+        },
+        backgroundColor: Theme.of(context).primaryColor,
+        child: Icon(
+          Icons.edit,
+          color: Theme.of(context).accentColor,
+        ),
       ),
     );
   }
